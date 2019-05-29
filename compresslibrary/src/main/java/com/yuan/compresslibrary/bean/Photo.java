@@ -7,6 +7,10 @@ public class Photo implements Serializable {
     private boolean compressed;//是否压缩过
     private String compressPath;//压缩后的图片
 
+    public Photo(String path) {
+        this.originalPath = path;
+    }
+
     public String getOriginalPath() {
         return originalPath;
     }

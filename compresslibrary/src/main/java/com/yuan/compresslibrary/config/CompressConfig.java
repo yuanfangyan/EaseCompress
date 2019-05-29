@@ -11,6 +11,10 @@ public class CompressConfig {
     private String cacheDir;//压缩后缓存图片目录，非文件目录
     private boolean showCompressDialog = true;//是否显示压缩进度条
 
+    public static CompressConfig getDefaultConfig() {
+        return new CompressConfig();
+    }
+
     public int getUnCompressMinPixel() {
         return unCompressMinPixel;
     }
@@ -83,6 +87,7 @@ public class CompressConfig {
         this.showCompressDialog = showCompressDialog;
     }
 
+
     public static Builder builder() {
         return new Builder();
     }
@@ -140,5 +145,8 @@ public class CompressConfig {
             return this;
         }
 
+        public CompressConfig create() {
+            return config;
+        }
     }
 }
