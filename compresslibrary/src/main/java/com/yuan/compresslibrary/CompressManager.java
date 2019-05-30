@@ -2,6 +2,7 @@ package com.yuan.compresslibrary;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.yuan.compresslibrary.bean.Photo;
 import com.yuan.compresslibrary.config.CompressConfig;
@@ -62,9 +63,10 @@ public class CompressManager implements CompressImage {
             return;
         }
         if (file.length() < config.getMaxSize()) {
-            continueCompress(image, true );
+            continueCompress(image, true);
             return;
         }
+        Log.e("compress>>>>: ", image.getOriginalPath());
         compressImageUtil.compress(image.getOriginalPath(), new CompressRequestListener() {
             @Override
             public void onCompressSuccess(String imgPath) {

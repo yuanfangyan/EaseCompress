@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.util.Log;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -17,7 +18,7 @@ public class CompressUtils1 {
      * 压缩图片文件到bitmap
      *
      * @param filePath
-     * @param quality
+     * @param quality  压缩比例
      * @return
      */
     public static Bitmap getSmallBitmap(String filePath, int quality) {

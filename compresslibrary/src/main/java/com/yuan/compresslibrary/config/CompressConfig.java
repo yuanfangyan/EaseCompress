@@ -1,6 +1,7 @@
 package com.yuan.compresslibrary.config;
 
 public class CompressConfig {
+
     private int unCompressMinPixel = 1000;//最小的像素不压缩
     private int unCompressNormalPixel = 2000;//标准像素不压缩
     private int maxPixel = 1200;//长或宽不超过最大像素，单位px
@@ -13,6 +14,9 @@ public class CompressConfig {
 
     public static CompressConfig getDefaultConfig() {
         return new CompressConfig();
+    }
+
+    private CompressConfig() {
     }
 
     public int getUnCompressMinPixel() {
