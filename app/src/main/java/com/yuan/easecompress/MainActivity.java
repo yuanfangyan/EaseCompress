@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
     private String cameraCachePath;//拍照后，源文件路径
     private CompressConfig config;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
