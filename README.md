@@ -4,16 +4,21 @@
 1.支持单张，多张图片压缩
 ## 使用方式
 step 1.
- repositories {
-     
+3、代码块高亮  
+```
+repositories {
+       ...
         maven { url 'https://jitpack.io' }
     }
+```  
 
 step 2.
+```
 implementation 'com.github.yuanfangyan:EaseCompress:1.0.1'
+```
 
 ## 使用方式
-
+```
  CompressManager.build(this, CompressConfig.getDefaultConfig(), images, new CompressImage.CompressListener() {
             @Override
             public void onCompressSuccess(ArrayList<Photo> photos) {
@@ -25,8 +30,10 @@ implementation 'com.github.yuanfangyan:EaseCompress:1.0.1'
 
             }
         });
+ ```       
         
-   自定义属性使用    
+   自定义属性使用   
+   ```
   CompressConfig  config = CompressConfig.builder()
                 .setUnCompressMinSize(100)//100kb 不压缩
                 .setMaxPixel(800)//长或宽不超过最大像素，
@@ -45,7 +52,8 @@ implementation 'com.github.yuanfangyan:EaseCompress:1.0.1'
             public void onCompressFailure(ArrayList<Photo> photos, String... err) {
                 Log.e("onCompressFailure: ", "压缩失败" + err[0]);
             }
-        }).compress();         
+        }).compress();  
+```
         
         
         
