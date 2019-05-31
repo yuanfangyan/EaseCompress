@@ -62,6 +62,7 @@ public class CompressImageUtil {
                 dismiss(progressDialog);
                 if (!config.isEnableReserveRaw()) {
                     boolean b = FileUtils.deleteSingleFile(imgPath);
+                    Log.e("delete: ", imgPath + "" + b);
                 }
                 listener.onCompressSuccess(path);
             } else {
@@ -85,7 +86,7 @@ public class CompressImageUtil {
                 public void run() {
                     progressDialog.dismiss();
                 }
-            },2000);
+            }, 2000);
 
         }
     }
