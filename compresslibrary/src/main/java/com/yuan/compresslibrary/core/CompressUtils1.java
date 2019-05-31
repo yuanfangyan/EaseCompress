@@ -5,13 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
-import android.util.Log;
+import android.os.Environment;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.concurrent.Executor;
+import java.io.IOException;
+import java.util.UUID;
 
 public class CompressUtils1 {
     /**
@@ -27,7 +28,7 @@ public class CompressUtils1 {
         BitmapFactory.decodeFile(filePath, options);
 
         //计算采样率，现在主流手机比较多是800*480分辨率
-        options.inSampleSize = calculateInSamleSize(options, 480, 800);
+        options.inSampleSize = calculateInSamleSize(options, 1080, 1920);
 
         //用样本大小集解码位图
         options.inJustDecodeBounds = false;
@@ -127,10 +128,16 @@ public class CompressUtils1 {
             return null;
         }
         fileName = fileName + ".png";
-        String path = context.getFilesDir().getAbsolutePath();
+//        String path = context.getFilesDir().getAbsolutePath();
+//        String laseFilePath = path + "/" + fileName;
+        String path = Environment.getExternalStorageDirectory() + "/Compress/";
+        File file1 = new File(path);
+        if (!file1.exists()) {
+            file1.mkdirs();
+        }
         String laseFilePath = path + "/" + fileName;
         File file = new File(laseFilePath);
-        if (file.exists()) {
+        if (!file.exists()) {
             file.delete();
         }
         try {
@@ -143,4 +150,16 @@ public class CompressUtils1 {
         }
         return file;
     }
+
+
+    /**
+     * 随机生产文件名
+     *
+     * @return
+     */
+    private static String generateFileName() {
+        return UUID.randomUUID().toString();
+    }
+
+
 }

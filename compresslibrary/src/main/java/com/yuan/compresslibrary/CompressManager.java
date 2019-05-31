@@ -62,7 +62,7 @@ public class CompressManager implements CompressImage {
             continueCompress(image, false);
             return;
         }
-        if (file.length() < config.getMaxSize()) {
+        if (file.length() < config.getUnCompressMinSize()) {
             continueCompress(image, true);
             return;
         }

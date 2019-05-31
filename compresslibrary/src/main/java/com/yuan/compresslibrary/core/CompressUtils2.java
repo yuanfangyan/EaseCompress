@@ -2,6 +2,7 @@ package com.yuan.compresslibrary.core;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,7 +14,7 @@ public class CompressUtils2 {
      * @param srcPath
      * @return
      */
-    private Bitmap getImage(String srcPath) {
+    public static Bitmap getImage(String srcPath) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         //开始读入图片，此时把options.inJustDecodeBounds 设为true
         options.inJustDecodeBounds = true;
@@ -22,8 +23,8 @@ public class CompressUtils2 {
         options.inJustDecodeBounds = false;
         int w = options.outWidth;
         int h = options.outHeight;
-        float hh = 800f;
-        float ww = 480f;
+        float hh = 500f;
+        float ww = 380f;
         //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
         int be = 1;//be=1表示不缩放
         if (w > h && w > ww) {//如果宽度大的话根据宽度固定大小缩放
@@ -50,11 +51,10 @@ public class CompressUtils2 {
     private static Bitmap compressImage(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        int options = 100;
-        while (baos.toByteArray().length / 1024 > 100) {//循环判读，如果压缩后图片是否大于100KB,大于继续压缩
+        int options = 10;
+        while (baos.toByteArray().length / 1024 > 200) {//循环判读，如果压缩后图片是否大于200KB,大于继续压缩
             baos.reset();//重置baos即清空baos
             bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
-            options -= 10;//每次减少10
         }
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream
         Bitmap bm = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
@@ -65,7 +65,9 @@ public class CompressUtils2 {
     /**
      * 图片按比例大小缩放
      */
-    private static Bitmap comp(Bitmap bitmap) {
+    public static Bitmap comp(String srcPath) {
+        Bitmap bitmap = BitmapFactory.decodeFile(srcPath);
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         if (baos.toByteArray().length / 1024 > 1024) {//判断如果图片大于1M，进行压缩避免再生成图片，

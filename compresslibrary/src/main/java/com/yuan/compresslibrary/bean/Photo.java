@@ -34,4 +34,14 @@ public class Photo implements Serializable {
     public void setCompressPath(String compressPath) {
         this.compressPath = compressPath;
     }
+
+    @Override
+    public String toString() {
+        return originalPath;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj.toString().equals(originalPath);
+    }
 }

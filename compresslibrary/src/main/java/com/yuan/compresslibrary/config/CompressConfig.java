@@ -2,10 +2,8 @@ package com.yuan.compresslibrary.config;
 
 public class CompressConfig {
 
-    private int unCompressMinPixel = 1000;//最小的像素不压缩
-    private int unCompressNormalPixel = 2000;//标准像素不压缩
+    private int unCompressMinSize = 100;//100kb 不压缩
     private int maxPixel = 1200;//长或宽不超过最大像素，单位px
-    private int maxSize = 200 * 1024;//压缩到的最大大小，单位B
     private boolean enablePixelCompress = true;//是否启用像素压缩
     private boolean enableQualityCompress = true;//是否启用质量压缩
     private boolean enableReserveRaw = true;//是否保留源文件
@@ -19,21 +17,6 @@ public class CompressConfig {
     private CompressConfig() {
     }
 
-    public int getUnCompressMinPixel() {
-        return unCompressMinPixel;
-    }
-
-    public void setUnCompressMinPixel(int unCompressMinPixel) {
-        this.unCompressMinPixel = unCompressMinPixel;
-    }
-
-    public int getUnCompressNormalPixel() {
-        return unCompressNormalPixel;
-    }
-
-    public void setUnCompressNormalPixel(int unCompressNormalPixel) {
-        this.unCompressNormalPixel = unCompressNormalPixel;
-    }
 
     public int getMaxPixel() {
         return maxPixel;
@@ -43,12 +26,12 @@ public class CompressConfig {
         this.maxPixel = maxPixel;
     }
 
-    public int getMaxSize() {
-        return maxSize;
+    public int getUnCompressMinSize() {
+        return unCompressMinSize;
     }
 
-    public void setMaxSize(int maxSize) {
-        this.maxSize = maxSize;
+    public void setUnCompressMinSize(int unCompressMinSize) {
+        this.unCompressMinSize = unCompressMinSize;
     }
 
     public boolean isEnablePixelCompress() {
@@ -104,23 +87,13 @@ public class CompressConfig {
         }
 
 
-        public Builder setUnCompressMinPixel(int unCompressMinPixel) {
-            config.setUnCompressMinPixel(unCompressMinPixel);
-            return this;
-        }
-
-        public Builder setUnCompressNormalPixel(int unCompressNormalPixel) {
-            config.setUnCompressNormalPixel(unCompressNormalPixel);
-            return this;
-        }
-
         public Builder setMaxPixel(int maxPixel) {
             config.setMaxPixel(maxPixel);
             return this;
         }
 
-        public Builder setMaxSize(int maxSize) {
-            config.setMaxSize(maxSize);
+        public Builder setUnCompressMinSize(int minSize) {
+            config.setUnCompressMinSize(minSize);
             return this;
         }
 
